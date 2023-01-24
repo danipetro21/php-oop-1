@@ -65,19 +65,36 @@ class Movie {
     }
 }
 
-$genere1 = new Genere("Azione");
-$genere2 = new Genere("Avventura");
-// $genere3 = new Genere("Fantasy");
+class Libreria {
+    public Array $movie;
 
-$generi = [ $genere1, $genere2 ];
+    public function __construct( array $movie ){
 
-//creazione istanza di un film 
+        $this -> movie = $movie;
+
+    }
+
+    public function getMovie(){
+
+        $str = "";
+        foreach ($this -> movie as $movie) {
+
+            $str .= $movie -> getInfoMovie() . "<br>";
+        }
+        return $str;
+    }
+}
+
+$azione = new Genere("Azione");
+$avventura = new Genere("Avventura");
+
+$generi = [ $azione, $avventura ];
 
 $ironman = new Movie("Ironman",9,"ENG","Supereroe appartenente all'universo cinematografico della Marvel!",$generi);
 $superman = new Movie("Superman", 8, "ENG", "Film della DC COMICS",$generi);
 
-echo $ironman -> getInfoMovie();
+$movies = [ $ironman, $superman ];
 
-echo "<br><br><br>";
+$library = new Libreria($movies);
+echo $library -> getMovie();
 
-echo $superman -> getInfoMovie();
